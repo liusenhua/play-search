@@ -15,8 +15,6 @@ libraryDependencies ++= Seq(
   "org.reactivecouchbase" %% "reactivecouchbase-play" % "0.3"
 )
 
-//libraryDependencies += "com.couchbase.client" % "java-client" % "2.2.0"
-
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
