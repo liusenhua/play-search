@@ -25,6 +25,19 @@ trait JestRepoComponent extends IndexRepoComponent {
   class JestRepo extends IndexerRepo with JsonFormats {
     val indexName = "bank"
     var indexType = "account"
+
+    def getAccount(accountId: String): RepoResponse[Account] = {
+      val json: String = """{"account_number":990,"balance":44456,"firstname":"Kelly","lastname":"Steele","age":35,"gender":"M","address":"809 Hoyt Street","employer":"Eschoir","email":"kellysteele@eschoir.com","city":"Stewartville","state":"ID"}"""
+      val account: Account = Json.parse(json).as[Account]
+      Future.successful(Right(account))
+    }
+
+    def searchAccount(): RepoResponse[List[Account]] = {
+      val json: String = """{"account_number":990,"balance":44456,"firstname":"Kelly","lastname":"Steele","age":35,"gender":"M","address":"809 Hoyt Street","employer":"Eschoir","email":"kellysteele@eschoir.com","city":"Stewartville","state":"ID"}"""
+      val account: Account = Json.parse(json).as[Account]
+      Future.successful(Right(List[Account](account)))
+    }
+
     def indexAccount(account: Account): RepoResponse[String] = {
       try {
         Logger.info("========================> indexAccount : " + account.accountId)
@@ -42,7 +55,6 @@ trait JestRepoComponent extends IndexRepoComponent {
           Logger.error("error indexing account ", ex)
           Future.successful(Left(ex.getMessage))
       }
-
     }
   }
 

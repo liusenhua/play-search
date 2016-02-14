@@ -9,7 +9,7 @@ trait BankServiceComponent {
   trait BankService {
     def getAccount(accountId: String): ServiceResponse[Account]
 
-    def getAllAccounts(): ServiceResponse[List[Account]]
+    def searchAccount(): ServiceResponse[List[Account]]
 
     def indexAccount(account: Account): ServiceResponse[String]
   }

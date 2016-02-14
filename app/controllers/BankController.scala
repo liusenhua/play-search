@@ -33,15 +33,15 @@ class BankController(comp: BankServiceComponent) extends Controller with JsonFor
       }
   }
 
-  @ApiOperation(value = "Get all accounts", response = classOf[List[Account]], httpMethod = "GET")
-  def getAllAccounts() = Action.async {
+  @ApiOperation(value = "Search accounts", response = classOf[List[Account]], httpMethod = "GET")
+  def searchAccount() = Action.async {
     request =>
-      Logger.debug(s"BankController.getAllAccounts")
+      Logger.debug(s"BankController.searchAccount")
 
-      bankService.getAllAccounts() map {
+      bankService.searchAccount() map {
         case DTO(d) => Ok(Json.toJson(d))
         case ErrorDTO(c, m) =>
-          Logger.error(s"BankController.getAllAccounts, InternalServerError ($c): $m")
+          Logger.error(s"BankController.searchAccount, InternalServerError ($c): $m")
           InternalServerError(m)
       }
   }

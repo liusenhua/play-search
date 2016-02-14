@@ -12,7 +12,7 @@ trait BankRepoComponent {
   trait BankRepo {
     def getAccount(accountId: String): RepoResponse[Account]
 
-    def getAllAccounts(): RepoResponse[List[Account]]
+    def searchAccount(): RepoResponse[List[Account]]
 
     def indexAccount(account: Account): RepoResponse[String]
   }

@@ -28,8 +28,8 @@ trait DefaultBankServiceComponent extends BankServiceComponent {
       }
     }
 
-    def getAllAccounts(): ServiceResponse[List[Account]] = {
-      val f: ServiceResponse[List[Account]] = bankRepo.getAllAccounts() map {
+    def searchAccount(): ServiceResponse[List[Account]] = {
+      val f: ServiceResponse[List[Account]] = bankRepo.searchAccount() map {
         case Right(key) => DTO(key)
         case Left(msg) => ErrorDTO(Errors.GenericRepo, msg)
         case _ => ErrorDTO(Errors.GenericRepo, "unable to query accounts in repository")

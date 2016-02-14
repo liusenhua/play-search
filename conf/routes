@@ -8,7 +8,7 @@ GET     /                           @controllers.DefaultController.index
 # API
 POST    /accounts                    @controllers.BankController.indexAccount()
 
-GET     /accounts                    @controllers.BankController.getAllAccounts()
+GET     /accounts                    @controllers.BankController.searchAccount()
 GET     /accounts/:id                @controllers.BankController.getAccount(id: String)
 
 # Map static resources from the /public folder to the /assets URL path
