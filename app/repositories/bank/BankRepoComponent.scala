@@ -12,12 +12,8 @@ trait BankRepoComponent {
   trait BankRepo {
     def getAccount(accountId: String): RepoResponse[Account]
 
-    def addAccount(account: Account): RepoResponse[String]
-
-    def updateAccount(accountId: String, account: Account): RepoResponse[String]
-
     def getAllAccounts(): RepoResponse[List[Account]]
 
-    def getAccountsByEmail(email: String): RepoResponse[List[Account]]
+    def indexAccount(account: Account): RepoResponse[String]
   }
 }

@@ -28,30 +28,6 @@ trait DefaultBankServiceComponent extends BankServiceComponent {
       }
     }
 
-    def addAccount(account: Account): ServiceResponse[String] = {
-      val f: ServiceResponse[String] = bankRepo.addAccount(account) map {
-        case Right(key) => DTO(key)
-        case Left(msg) => ErrorDTO(Errors.GenericRepo, msg)
-        case _ => ErrorDTO(Errors.GenericRepo, "unable to add account to repository")
-      }
-
-      f recover {
-        case e: Throwable => ErrorDTO[String](Errors.GenericRepo, e.getMessage)
-      }
-    }
-
-    def updateAccount(accountId: String, account: Account): ServiceResponse[String] = {
-      val f: ServiceResponse[String] = bankRepo.updateAccount(accountId, account) map {
-        case Right(key) => DTO(key)
-        case Left(msg) => ErrorDTO(Errors.GenericRepo, msg)
-        case _ => ErrorDTO(Errors.GenericRepo, "unable to update account in repository")
-      }
-
-      f recover {
-        case e: Throwable => ErrorDTO[String](Errors.GenericRepo, e.getMessage)
-      }
-    }
-
     def getAllAccounts(): ServiceResponse[List[Account]] = {
       val f: ServiceResponse[List[Account]] = bankRepo.getAllAccounts() map {
         case Right(key) => DTO(key)
@@ -64,15 +40,15 @@ trait DefaultBankServiceComponent extends BankServiceComponent {
       }
     }
 
-    def getAccountsByEmail(email: String): ServiceResponse[List[Account]] = {
-      val f: ServiceResponse[List[Account]] = bankRepo.getAccountsByEmail(email) map {
-        case Right(accounts) => DTO(accounts)
+    def indexAccount(account: Account): ServiceResponse[String] = {
+      val f: ServiceResponse[String] = bankRepo.indexAccount(account) map {
+        case Right(key) => DTO(key)
         case Left(msg) => ErrorDTO(Errors.GenericRepo, msg)
-        case _ => ErrorDTO(Errors.GenericRepo, "unable to query accounts in repository")
+        case _ => ErrorDTO(Errors.GenericRepo, "unable to add account to repository")
       }
 
       f recover {
-        case e: Throwable => ErrorDTO[List[Account]](Errors.GenericRepo, e.getMessage)
+        case e: Throwable => ErrorDTO[String](Errors.GenericRepo, e.getMessage)
       }
     }
 

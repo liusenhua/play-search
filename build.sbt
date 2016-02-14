@@ -1,4 +1,4 @@
-name := """play-nosql"""
+name := """play-search"""
 
 version := "1.0-SNAPSHOT"
 
@@ -12,6 +12,7 @@ libraryDependencies ++= Seq(
   ws,
   "org.scalatestplus" %% "play" % "1.1.0" % "test",
   "com.wordnik" %% "swagger-play2" % "1.3.10",
+  "io.searchbox" % "jest" % "0.1.5",
   "org.reactivecouchbase" %% "reactivecouchbase-play" % "0.3"
 )
 
